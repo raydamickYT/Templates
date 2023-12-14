@@ -1,39 +1,39 @@
-#include <iostream>
-#include <random>
-#include <SFML/Graphics.hpp>
-#include <chrono>
-#include <cmath>
-
-#include "ELf.h"
-#include "Orc.h"
-#include "Farmer.h"
-#include "Soldier.h"
-#include "Shaman.h"
+#include "ArraySorter.h"
+#include "Queue.h"
+#include <string>
 
 int main()
 {
-    NPC *elf = new Elf("Legolas");
-    NPC *orc = new Orc("Azog");
+    // Sorteren van std::strings
+    std::string strArray[] = {"banaan", "appel", "citroen"};
+    int strSize = sizeof(strArray) / sizeof(strArray[0]);
+    sortArray(strArray, strSize);
+    printArray(strArray, strSize);
 
-    NPC *farmerElf = new Farmer(elf);
-    NPC *soldierShamanOrc = new Soldier(new Shaman(orc));
+    // Sorteren van floats
+    float floatArray[] = {3.14f, 1.59f, 2.65f};
+    int floatSize = sizeof(floatArray) / sizeof(floatArray[0]);
+    sortArray(floatArray, floatSize);
+    printArray(floatArray, floatSize);
 
-    // elf->render();              // Print alleen de Elf
-    // farmerElf->render();        // Print de Elf met Farmer rol
-    soldierShamanOrc->render(); // Print de Orc met Soldier en Shaman rollen
+    // Gebruik van de Queue
+    Queue<int> queue;
+    queue.put(2);
+    queue.put(1);
+    queue.put(3);
 
-    //deze while loop staat er in omdat anders de console direct afsluit.
+    std::cout << "Queue na toevoegingen: ";
+    queue.print();
+
+    std::cout << "Element verwijderd: " << queue.get() << std::endl;
+
+    std::cout << "Queue na verwijdering: ";
+    queue.print();
+
     bool isRunning = true;
     while (isRunning)
     {
-
     }
-    
-    // Vergeet niet om gealloceerd geheugen vrij te geven
-    delete elf;
-    delete orc;
-    delete farmerElf;
-    delete soldierShamanOrc;
 
     return 0;
 }
